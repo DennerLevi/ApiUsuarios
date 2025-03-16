@@ -40,6 +40,29 @@ namespace ApiUsuarios.Service
             }
             return response;
         }
+        public async Task<ResponseModel<UsuarioDto>> BuscarUsuarioPorId(int usuarioId)
+        {
+            ResponseModel<UsuarioDto> response = new ResponseModel<UsuarioDto>();
+
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                var usuarioBanco = await connection.QueryFirstOrDefaultAsync<Usuario>("select * from Usuarios where id = @id", new {Id = usuarioId});
+
+                if (usuarioBanco ==null)
+                {
+                    response.Mensagem = "Nenhum Usuário localizado";
+                    response.Status = false;
+                    return response;
+                }
+
+                //minha lista de usuario vai ser uma lista usuarioDTO
+                var usuarioMapeado = _mapper.Map<UsuarioDto>(usuarioBanco);
+
+                response.Dados = usuarioMapeado;
+                response.Mensagem = "Usuario localizados com sucesso";
+            }
+            return response;
+        }
     }
 }
    
