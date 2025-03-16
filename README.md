@@ -1,1 +1,1 @@
-Projeto de cadastro de usuário | Angular 17+ e .NET 8 | Web API, Dapper e SQL Server | 
+ CRUD com DAPPER | WEB API com .NET 8 e SQL Server | CRUD + Repository Pattern 💻
