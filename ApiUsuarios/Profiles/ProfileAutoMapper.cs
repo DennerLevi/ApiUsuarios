@@ -9,6 +9,8 @@ namespace ApiUsuarios.Profiles
         public ProfileAutoMapper()
         {
             CreateMap<Usuario, UsuarioDto>();
+            CreateMap<Usuario, UsuarioEditarDto>();
+
         }
     }
 }
